@@ -8,5 +8,9 @@ int main() {
 
     cout << deck << endl;
 
+    Card card = Card(2, 6);
+
+    cout << card.to_string() << " is at " << deck.find_card(card);
+
     return EXIT_SUCCESS;
 }
