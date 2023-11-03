@@ -7,7 +7,7 @@ using namespace std;
 struct Deck {
     vector<Card> cards;
 
-    Deck();
+    Deck(); 
     Deck(int n);
     Deck(vector<Card> cards);
 
