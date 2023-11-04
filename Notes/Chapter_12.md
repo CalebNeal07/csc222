@@ -6,7 +6,7 @@
  - Invoked with the syntax`Object.func()`
  - Defined in a header a file by putting the function definition inside the class body.
  - Function implementation uses namespace `Object::func()`
- - A member function can refernce the object it was called from with the keyword `this`
+ - A member function can reference the object it was called from with the keyword `this`
  - Member functions have implicit access to a classes member variables
 ### Constructors
  - Constructors are a special kind of member function that create an instance of the object.
