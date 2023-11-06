@@ -2,36 +2,39 @@
 using namespace std;
 
 struct Complex {
-    double real;
-    double imaginary;
+  double real;
+  double imaginary;
 
-    Complex();
+  Complex();
+  Complex(int r, int i);
+  Complex(double r, double i);
+  Complex(const Complex &c);
 
-    string to_string();
+  string to_string();
 
-    Complex operator+(Complex i);
-    Complex operator+(int i);
-    Complex operator+(double i);
-    
-    Complex operator-(Complex i);
-    Complex operator-(int i);
-    Complex operator-(double i);
+  Complex operator+(const Complex &i);
+  Complex operator+(const int &i);
+  Complex operator+(const double &i);
 
-    Complex operator*(Complex i);
-    Complex operator*(int i);
-    Complex operator*(double i);
+  Complex operator-(const Complex &i);
+  Complex operator-(const int &i);
+  Complex operator-(const double &i);
 
-    Complex operator/(Complex i);
-    Complex operator/(int i);
-    Complex operator/(double i);
+  Complex operator*(const Complex &i);
+  Complex operator*(const int &i);
+  Complex operator*(const double &i);
 
-    Complex operator^(Complex i);
-    Complex operator^(int i);
-    Complex operator^(double i);
+  Complex operator/(const Complex &i);
+  Complex operator/(const int &i);
+  Complex operator/(const double &i);
 
-    Complex operator==(Complex i);
-    Complex operator==(int i);
-    Complex operator==(double i);
+  Complex operator^(const Complex &i);
+  Complex operator^(const int &i);
+  Complex operator^(const double &i);
 
-    Complex sqrt();
+  bool operator==(const Complex &i);
+  bool operator==(const int &i);
+  bool operator==(const double &i);
+
+  Complex sqrt();
 };
