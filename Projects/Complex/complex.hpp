@@ -13,28 +13,16 @@ struct Complex {
   string to_string();
 
   Complex operator+(const Complex &i);
-  Complex operator+(const int &i);
   Complex operator+(const double &i);
 
   Complex operator-(const Complex &i);
-  Complex operator-(const int &i);
   Complex operator-(const double &i);
 
   Complex operator*(const Complex &i);
-  Complex operator*(const int &i);
   Complex operator*(const double &i);
 
   Complex operator/(const Complex &i);
-  Complex operator/(const int &i);
   Complex operator/(const double &i);
 
-  Complex operator^(const Complex &i);
-  Complex operator^(const int &i);
-  Complex operator^(const double &i);
-
   bool operator==(const Complex &i);
-  bool operator==(const int &i);
-  bool operator==(const double &i);
-
-  Complex sqrt();
 };

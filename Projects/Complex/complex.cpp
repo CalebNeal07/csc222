@@ -1,4 +1,4 @@
-#include "complex.h"
+#include "complex.hpp"
 
 Complex::Complex() {
   this->real = 0;
@@ -22,8 +22,8 @@ Complex::Complex(const Complex &c) {
 
 string clean_float_to_string(double n) {
   string str = std::to_string(n);
-  str.erase(str.find_last_not_of('0') + 1, std::string::npos);
-  str.erase(str.find_last_not_of('.') + 1, std::string::npos);
+  str.erase(str.find_last_not_of('0') + 1, string::npos);
+  str.erase(str.find_last_not_of('.') + 1, string::npos);
   return str;
 }
 
@@ -36,10 +36,6 @@ Complex Complex::operator+(const Complex &i) {
   return Complex(this->real + i.real, this->imaginary + i.imaginary);
 }
 
-Complex Complex::operator+(const int &i) {
-  return Complex(this->real + i, this->imaginary);
-}
-
 Complex Complex::operator+(const double &i) {
   return Complex(this->real + i, this->imaginary);
 }
@@ -48,18 +44,33 @@ Complex Complex::operator-(const Complex &i) {
   return Complex(this->real - i.real, this->imaginary - i.imaginary);
 }
 
-Complex Complex::operator-(const int &i) {
-  return Complex(this->real - i, this->imaginary);
-}
-
 Complex Complex::operator-(const double &i) {
   return Complex(this->real - i, this->imaginary);
 }
 
-Complex Complex::operator*(const Complex &i) {}
+Complex Complex::operator*(const Complex &i) {
+  return Complex(this->real * i.real - this->imaginary * i.imaginary,
+                 this->real * i.imaginary + this->imaginary * i.real);
+}
 
-Complex Complex::operator/(const Complex &i) {}
+Complex Complex::operator*(const double &i) {
+  return Complex(this->real * i, this->imaginary * i);
+}
 
-Complex Complex::operator^(const Complex &i) {}
+Complex Complex::operator/(const Complex &i) {
+  double a = this->real;
+  double b = this->imaginary;
+  double c = i.real;
+  double d = i.imaginary;
 
-bool Complex::operator==(const Complex &i) {}
+  return Complex(((a * c) + (b * d)) / ((c * c) + (d * d)),
+                 ((b * c) - (a * d)) / ((c * c) + (d * d)));
+}
+
+Complex Complex::operator/(const double &i) {
+  return Complex(this->real / i, this->imaginary / i);
+}
+
+bool Complex::operator==(const Complex &i) {
+  return this->real == i.real && this->imaginary == i.imaginary;
+}
