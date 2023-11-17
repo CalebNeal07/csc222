@@ -1,3 +1,8 @@
+/**
+ * Authors: Caleb O'Neal & Shangwen Cheng
+ * Date: November 14, 2023
+ * Course: CSC 222: Object-Oriented Programming
+ */
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "complex.hpp"
 #include "doctest.h"
