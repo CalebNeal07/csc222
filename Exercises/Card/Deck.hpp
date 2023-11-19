@@ -1,17 +1,17 @@
-#include <vector>
+#include "Card.hpp"
 #include <iostream>
-#include "Card.h"
+#include <vector>
 
 using namespace std;
 
 struct Deck {
-    vector<Card> cards;
+  vector<Card> cards;
 
-    Deck(); 
-    Deck(int n);
-    Deck(vector<Card> cards);
+  Deck();
+  Deck(int n);
+  Deck(vector<Card> cards);
 
-    int find_card(const Card& card);
+  int find_card(const Card &card);
 
-    friend ostream& operator<<(ostream& os, const Deck& deck);
+  friend ostream &operator<<(ostream &os, const Deck &deck);
 };

@@ -1,40 +1,37 @@
-#include "Deck.h"
+#include "Deck.hpp"
 
 Deck::Deck() {
-    std::vector<Card> deck(52);
+  std::vector<Card> deck(52);
 
-    int i = 0;
-    for (int suit = 0; suit <= 3; suit++) {
-        for (int rank = 1; rank <= 13; rank++) {
-            deck[i].suit = suit;
-            deck[i].rank = rank;
-            i++;
-        }
+  int i = 0;
+  for (int suit = 0; suit <= 3; suit++) {
+    for (int rank = 1; rank <= 13; rank++) {
+      deck[i].suit = suit;
+      deck[i].rank = rank;
+      i++;
     }
+  }
 
-    this->cards = deck;
+  this->cards = deck;
 }
 
-Deck::Deck(int n) {
-    this->cards = vector<Card>(n);
+Deck::Deck(int n) { this->cards = vector<Card>(n); }
+
+Deck::Deck(vector<Card> cards) { this->cards = cards; }
+
+int Deck::find_card(const Card &card) {
+  for (int i = 0; i < this->cards.size(); i++) {
+    if (Card::equals(this->cards[i], card))
+      return i;
+  }
+  return -1;
 }
 
-Deck::Deck(vector<Card> cards) {
-    this->cards = cards;
-}
+ostream &operator<<(ostream &os, const Deck &deck) {
+  for (const auto d : deck.cards) {
+    os << d.to_string();
+    os << '\n';
+  }
 
-int Deck::find_card(const Card& card) {
-    for (int i = 0; i < this->cards.size(); i++) {
-        if (Card::equals(this->cards[i], card)) return i;
-    }
-    return -1;
-}
-
-ostream& operator<<(ostream& os, const Deck& deck) {
-    for (const auto d : deck.cards) {
-        os << d.to_string();
-        os << '\n';
-    }
-
-    return os;
+  return os;
 }
