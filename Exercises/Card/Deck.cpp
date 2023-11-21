@@ -35,3 +35,41 @@ ostream &operator<<(ostream &os, const Deck &deck) {
 
   return os;
 }
+
+void Deck::swap_cards(int a, int b) {
+  Card tmp = this->cards[a];
+
+  this->cards[a] = this->cards[b];
+  this->cards[b] = tmp;
+}
+
+int Deck::find_lowest(int l, int h) {
+  int lowest = this->cards[l].rank;
+  int index = l;
+
+  for (int i = 0; i < h - l; i++) {
+    if (this->cards[i + l].rank < lowest) {
+      lowest = this->cards[i + l].rank;
+      index = i + l;
+    }
+  }
+
+  return index;
+}
+
+void Deck::sort() {
+  for (int i = 0; i < cards.size(); i++) {
+    int low = this->find_lowest(0, i);
+
+    this->swap_cards(i, low);
+  }
+}
+/*
+void Deck::merge_sort() {
+  if (self->cards.size <= 1) {
+    return;
+  }
+
+  Deck()
+}
+*/
