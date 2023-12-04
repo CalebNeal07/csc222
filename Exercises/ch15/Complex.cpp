@@ -1,4 +1,5 @@
 #include "Complex.hpp"
+#include <cmath>
 
 Complex::Complex() {
   real = 0;
@@ -50,6 +51,11 @@ Complex Complex::operator+(const Complex &c) {
 
 Complex Complex::operator-(const Complex &c) {
   return Complex(real - c.real, imag - c.imag);
+}
+
+ostream &operator<<(ostream &os, const Complex &c) {
+  os << c.real << " + " << c.imag << "i";
+  return os;
 }
 
 void Complex::calculate_cartesian() {

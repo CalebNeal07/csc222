@@ -1,5 +1,3 @@
-#include <assert.h>
-#include <cmath>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -30,6 +28,7 @@ public:
   // member functions
   Complex operator+(const Complex &c);
   Complex operator-(const Complex &c);
+  friend ostream &operator<<(ostream &os, const Complex &c);
   Complex abs();
   Complex operator*(Complex &c);
   string str_cartesian();
