@@ -13,6 +13,12 @@ Complex::Complex(double r, double i) {
   polar = false;
 }
 
+Complex::Complex(double m, double t, Flag f) {
+  polar = true;
+  mag = m;
+  theta = t;
+}
+
 double Complex::get_real() { return real; }
 
 double Complex::get_imag() { return imag; }
@@ -65,11 +71,12 @@ void Complex::calculate_cartesian() {
 }
 
 Complex Complex::operator*(Complex &c) {
-  if (polar == false)
-    calculate_polar();
-  if (c.polar == false)
-    c.calculate_polar();
-  return Complex(mag * c.mag, theta + c.theta, POLAR);
+  if (polar == true)
+    calculate_cartesian();
+  if (c.polar == true)
+    c.calculate_cartesian();
+  return Complex((real * c.real) - (imag * c.imag),
+                 (imag * c.real) + (real * c.imag));
 }
 
 Complex Complex::abs() { return Complex(std::abs(real), std::abs(imag)); }
