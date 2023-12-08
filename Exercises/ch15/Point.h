@@ -12,6 +12,6 @@ public:
 
   Point operator+(const Point &);
   Point operator-(const Point &);
-  string to_str();
+  string to_string();
   friend ostream &operator<<(ostream &os, const Point &p);
 };

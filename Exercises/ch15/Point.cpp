@@ -1,4 +1,4 @@
-#include "Point.hpp"
+#include "Point.h"
 using namespace std;
 
 Point::Point() {
@@ -11,8 +11,8 @@ Point::Point(double x, double y) {
   this->y = y;
 }
 
-string Point::to_str() {
-  return "(" + to_string(this->x) + ", " + to_string(this->y) + ")";
+string Point::to_string() {
+  return "(" + std::to_string(this->x) + ", " + std::to_string(this->y) + ")";
 }
 
 Point Point::operator+(const Point &p) {
