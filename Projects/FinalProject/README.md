@@ -6,7 +6,7 @@
 This project uses [CMake](https://cmake.org/download/) to build, so make sure it's installed.
 
 Dependencies:
- - SDL
+ - [SDL2](https://wiki.libsdl.org/SDL2/Installation)
 
 ### Install
 
