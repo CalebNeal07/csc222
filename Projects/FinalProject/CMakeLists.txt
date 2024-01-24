@@ -10,6 +10,8 @@ add_executable(FinalProject
         main.cpp
         SDLAudioHandler.cpp
         SDLAudioHandler.hpp
+        WavHeader.cpp
+        WavHeader.hpp
 )
 
 # Add all headers files under the include directory

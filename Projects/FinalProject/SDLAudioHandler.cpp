@@ -6,6 +6,8 @@
 
 #include <iostream>
 
+#include "WavHeader.hpp"
+
 SDLAudioHandler::SDLAudioHandler() : audioDevice(0), audioBuffer(nullptr), audioBufferSize(0), bufferPosition(0) {
     // Constructor
 }
@@ -21,17 +23,26 @@ SDLAudioHandler::~SDLAudioHandler() {
     SDL_Quit();
 }
 
-bool SDLAudioHandler::init() {
+bool SDLAudioHandler::init(const WavHeader &wav_header) {
     // Initialize SDL
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         std::cerr << "SDL initialization failed: " << SDL_GetError() << std::endl;
         return false;
     }
 
+    audioSpec.freq = wav_header.sampleRate;
+    audioSpec.channels = wav_header.numChannels;
+    if (wav_header.bitsPerSample == 8) {
+        audioSpec.format = AUDIO_S8;
+    } else if (wav_header.bitsPerSample == 16) {
+        audioSpec.format= AUDIO_S16;
+    } else if (wav_header.bitsPerSample == 32) {
+        audioSpec.format = AUDIO_F32;
+    } else {
+        audioSpec.format = AUDIO_S16;
+    }
+
     // Set the audio specification
-    audioSpec.freq = 44100;
-    audioSpec.format = AUDIO_S16;
-    audioSpec.channels = 2;
     audioSpec.samples = 1024;
     audioSpec.callback = audioCallback;
     audioSpec.userdata = this;
@@ -54,7 +65,7 @@ bool SDLAudioHandler::init() {
     return true;
 }
 
-void SDLAudioHandler::playWavBuffer(const Uint8* buffer, Uint32 length) {
+void SDLAudioHandler::playWavBuffer(const Uint8* buffer, const Uint32 length) {
     delete[] audioBuffer;
 
     // Allocate a new buffer and copy the WAV data
@@ -79,4 +90,8 @@ void SDLAudioHandler::audioCallback(void* userdata, Uint8* stream, int len) {
             std::memset(stream, 0, len);
         }
     }
+}
+
+Uint32 SDLAudioHandler::getQueuedAudioSize() {
+    return SDL_GetQueuedAudioSize(audioDevice);
 }

@@ -7,14 +7,17 @@
 #include <SDL_audio.h>
 #include <SDL.h>
 
+#include "WavHeader.hpp"
+
 
 class SDLAudioHandler {
 public:
     SDLAudioHandler();
     ~SDLAudioHandler();
 
-    bool init();
+    bool init(const WavHeader &wav_header);
     void playWavBuffer(const Uint8* buffer, Uint32 length);
+    Uint32 getQueuedAudioSize();
 
 private:
     SDL_AudioSpec audioSpec;
