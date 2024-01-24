@@ -67,6 +67,10 @@ int main(const int argc, char** argv) {
                     quitFlag = true;
                     break;
                 }
+
+                if (quitFlag) {
+                    return EXIT_SUCCESS;
+                }
             }
         }
     }
